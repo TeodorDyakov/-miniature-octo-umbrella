@@ -1,9 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class TestPractice {
 
@@ -26,8 +20,8 @@ public class TestPractice {
         @Override
         public String toString() {
             return
-                "question:\n" + question+
-                "answer:\n" + answer +"\n";
+                    "question:\n" + question+
+                            "answer:\n" + answer +"\n";
         }
 
         @Override
@@ -55,7 +49,7 @@ public class TestPractice {
     }
 
     public static List<String> parse(String text){
-        var l = new ArrayList<String>();
+        List<String> l = new ArrayList<String>();
         int idx;
         text = text.substring(text.indexOf("1. "));
         for(int i = 2;; i++){
@@ -70,12 +64,26 @@ public class TestPractice {
         return l;
     }
 
+    public static String readFileToString(String fileName) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(fileName));
+        String res = "";
+        while(scanner.hasNext()){
+            res += scanner.nextLine();
+        }
+        return res;
+    }
+
     public static void main(String[] args) throws IOException {
-        Path fileName = Path.of(args[0]);
-        String actual = Files.readString(fileName);
+//        Path fileName = Path.of(args[0]);
+        String actual = readFileToString(args[0]);
 
         List<String>que = parse(actual);
-        List<String> ans = Files.lines(Path.of(args[1])).collect(Collectors.toList());
+        Scanner sc = new Scanner(new File(args[1]));
+        List<String> ans = new ArrayList<>();
+        while(sc.hasNext()){
+            ans.add(sc.nextLine());
+        }
+
         List<Question> questions = new ArrayList<>();
 
         for(int i = 0; i < que.size() && i < ans.size(); i++){
