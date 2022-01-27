@@ -49,7 +49,7 @@ public class TestPractice {
     }
 
     public static List<String> parse(String text){
-        List<String> l = new ArrayList<String>();
+        var l = new ArrayList<String>();
         int idx;
         text = text.substring(text.indexOf("1. "));
         for(int i = 2;; i++){
@@ -68,17 +68,17 @@ public class TestPractice {
         Scanner scanner = new Scanner(new File(fileName));
         String res = "";
         while(scanner.hasNext()){
-            res += scanner.nextLine();
+            res += scanner.nextLine() + "\n";
         }
         return res;
     }
 
     public static void main(String[] args) throws IOException {
 //        Path fileName = Path.of(args[0]);
-        String actual = readFileToString(args[0]);
+        String actual = readFileToString("questions.txt");
 
         List<String>que = parse(actual);
-        Scanner sc = new Scanner(new File(args[1]));
+        Scanner sc = new Scanner(new File("answers.txt"));
         List<String> ans = new ArrayList<>();
         while(sc.hasNext()){
             ans.add(sc.nextLine());
