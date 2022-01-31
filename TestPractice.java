@@ -58,6 +58,7 @@ public class TestPractice {
             if(idx < 0){
                 break;
             }
+
             l.add(text.substring(0, idx));
             text = text.substring(idx);
         }
@@ -85,7 +86,6 @@ public class TestPractice {
         while(sc.hasNext()){
             ans.add(sc.nextLine());
         }
-
         List<Question> questions = new ArrayList<>();
 
         for(int i = 0; i < que.size() && i < ans.size(); i++){
