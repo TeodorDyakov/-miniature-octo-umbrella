@@ -71,8 +71,7 @@ b . съчетава правилно разположението на граф
 c. е кореюен и лесен за промени
 d. потребителите изискват
 
-12.
-a . <scheme>://<authority><host>:<port>/<path>?#<fragment>
+12. a . <scheme>://<authority><host>:<port>/<path>?#<fragment>
 b . <scheme>://<host>:<port>/<path>?<query>#<fragment>
 c. <scheme>://<user_info> @<host>:<port>/<path>?<query>#<fragment>
 d. http://<host>:<port>/<path>?<query>#<fragment>­не е ли това вярното? 
