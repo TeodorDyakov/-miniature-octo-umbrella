@@ -67,19 +67,21 @@ public class TestPractice {
     public static String readFileToString(String fileName) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(fileName));
         String res = "";
-        while(scanner.hasNext()){
+        while(scanner.hasNextLine()){
             res += scanner.nextLine() + "\n";
         }
         return res;
     }
 
     public static void main(String[] args) throws IOException {
-//        Path fileName = Path.of(args[0]);
-        String actual = readFileToString("questions.txt");
+        String actual = readFileToString(args[0]);
 
         List<String>que = parse(actual);
-        Scanner sc = new Scanner(new File("answers.txt"));
+
+        Scanner sc = new Scanner(new File(args[1]));
+
         List<String> ans = new ArrayList<>();
+
         while(sc.hasNext()){
             ans.add(sc.nextLine());
         }
@@ -112,6 +114,12 @@ public class TestPractice {
                 gotWrong.add(q);
                 System.out.println("WRONG answer is: " + q.getAnswer());
             }
+        }
+        System.out.println("You finished all questions! d oyu want to continue practicing on wrongly answered questions?" +
+                "\ny\\n");
+        String s = scanner.next();
+        if(!s.equals("y")) {
+            return;
         }
         bw.close();
         while(!gotWrong.isEmpty()){
