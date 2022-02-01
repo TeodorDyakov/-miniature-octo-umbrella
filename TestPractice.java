@@ -1,4 +1,8 @@
+
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -65,17 +69,9 @@ public class TestPractice {
         return l;
     }
 
-    public static String readFileToString(String fileName) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(fileName));
-        String res = "";
-        while(scanner.hasNextLine()){
-            res += scanner.nextLine() + "\n";
-        }
-        return res;
-    }
-
     public static void main(String[] args) throws IOException {
-        String actual = readFileToString(args[0]);
+
+        String actual = Files.readString(Path.of(args[0]), StandardCharsets.UTF_8);
 
         List<String>que = parse(actual);
 
